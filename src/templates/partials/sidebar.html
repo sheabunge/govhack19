@@ -1,0 +1,25 @@
+<aside class="secondary">
+
+	<header>
+		<h1 class="logo">
+			<span>fire</span>watch
+			<span class="fas fa-fire"></span>
+		</h1>
+	</header>
+
+	<nav class="site-navigation">
+		<ul>
+
+			{% set items = [] %}
+
+			{% for item in items %}
+				<li>
+					<a href="{{ item[0] }}">
+						<i class="far fa-{{ item[2] }}"></i>
+						{{ item[1] }}
+					</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</nav>
+</aside>

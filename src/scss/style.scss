@@ -1,0 +1,13 @@
+$fa-font-path: 'fonts';
+@import '~@fortawesome/fontawesome-pro/scss/regular';
+@import '~@fortawesome/fontawesome-pro/scss/solid';
+@import '~@fortawesome/fontawesome-pro/scss/fontawesome';
+
+@import 'reset';
+@import 'elements';
+@import 'site';
+@import 'sidebar';
+
+html, body {
+	height: 100%;
+}

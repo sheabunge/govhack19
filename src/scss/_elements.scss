@@ -1,0 +1,153 @@
+/* Input fields */
+
+input,
+textarea {
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 2px;
+	color: #2b2b2b;
+	padding: 8px 10px 7px;
+}
+
+textarea {
+	width: 100%;
+}
+
+input:focus,
+textarea:focus {
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	outline: 0;
+}
+
+/* Buttons */
+
+button, .button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	background-color: #24890d;
+	border: 0;
+	border-radius: 2px;
+	color: #fff;
+	font-size: 12px;
+	font-weight: 700;
+	padding: 10px 30px 11px;
+	text-transform: uppercase;
+	vertical-align: bottom;
+
+  &:hover, &:focus {
+      background-color: #41a62a;
+      color: #fff;
+  }
+
+  &:active {
+	background-color: #55d737;
+  }
+}
+
+
+/* Placeholder text color -- selectors need to be separate to work. */
+
+::-webkit-input-placeholder {
+	color: #939393;
+}
+
+:-moz-placeholder {
+	color: #939393;
+}
+
+::-moz-placeholder {
+	color: #939393;
+	opacity: 1; /* Since FF19 lowers the opacity of the placeholder by default */
+}
+
+:-ms-input-placeholder {
+	color: #939393;
+}
+
+/* Responsive images. Fluid images for posts, comments, and widgets */
+
+.comment-content img,
+.entry-content img,
+.entry-summary img,
+#site-header img,
+.widget img,
+.wp-caption {
+	max-width: 100%;
+}
+
+/**
+ * Make sure images with WordPress-added height and width attributes are
+ * scaled correctly.
+ */
+
+.comment-content img[height],
+.entry-content img,
+.entry-summary img,
+img[class*="align"],
+img[class*="wp-image-"],
+img[class*="attachment-"],
+#site-header img {
+	height: auto;
+}
+
+img.size-full,
+img.size-large,
+.wp-post-image,
+.post-thumbnail img {
+	height: auto;
+	max-width: 100%;
+}
+
+/* Make sure embeds and iframes fit their containers */
+
+embed,
+iframe,
+object,
+video {
+	margin-bottom: 24px;
+	max-width: 100%;
+}
+
+p > embed,
+p > iframe,
+p > object,
+span > embed,
+span > iframe,
+span > object {
+	margin-bottom: 0;
+}
+
+/* Assistive text */
+
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	overflow: hidden;
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+}
+
+.screen-reader-text:focus {
+	background-color: #f1f1f1;
+	border-radius: 3px;
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	clip: auto;
+	color: #21759b;
+	display: block;
+	font-size: 14px;
+	font-weight: bold;
+	height: auto;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	position: absolute;
+	left: 5px;
+	top: 5px;
+	text-decoration: none;
+	text-transform: none;
+	width: auto;
+	z-index: 100000; /* Above WP toolbar */
+}
+
+.hide {
+	display: none;
+}
