@@ -11,12 +11,45 @@
 	{% include 'partials/sidebar.html' %}
 
 	<main class="main">
+		<div class="site-content">
+			<h1><span class="far fa-exclamation-circle"></span> Recent Alerts</h1>
+
+			<div class="alerts">
+				{% for alert in alerts %}
+					<article>
+						<a href="{{ ('alerts/' ~ alert.id) | prepend_base }}" title="View more information about this alert">
+							<h2>{{ alert.title }}</h2>
+
+							<table class="icon-table">
+								<tr>
+									<td><span class="far fa-exclamation-triangle"></span></td>
+									<th>Alert severity</th>
+									<td>{{ alert.level }}</td>
+								</tr>
+								<tr>
+									<td><span class="far fa-clock"></span></td>
+									<th>First reported</th>
+									<td><time title="{{ alert.date }}">
+											{{ alert.date | human_time_diff }}
+										</time></td>
+								</tr>:qL
+							</table>
 
 
+							<p>{{ alert.desc }}</p>
+						</a>
+					</article>
+
+				{% endfor %}
+			</div>
+
+			<p><small>Alert data is retrieved from the
+					<a href="http://www.fire.tas.gov.au/Show?pageId=colCurrentBushfires">Tasmanian Fire Service
+						website</a>.</p>
+		</div>
+
+		{% include 'partials/footer.html' %}
 	</main>
-
-	{% include 'partials/footer.html' %}
-
 </div>
 
 {% include 'partials/footer_meta.html' %}

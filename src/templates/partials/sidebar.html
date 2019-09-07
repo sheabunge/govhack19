@@ -10,11 +10,13 @@
 	<nav class="site-navigation">
 		<ul>
 
-			{% set items = [] %}
+			{% set items = [
+				['/', 'Recent Alerts', 'exclamation-circle']
+			] %}
 
 			{% for item in items %}
 				<li>
-					<a href="{{ item[0] }}">
+					<a href="{{ item[0] | prepend_base }}">
 						<i class="far fa-{{ item[2] }}"></i>
 						{{ item[1] }}
 					</a>

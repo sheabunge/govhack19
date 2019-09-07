@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	{% include 'partials/head_meta.html' %}
+</head>
+<body class="index-page">
+
+<div class="site">
+	{% include 'partials/sidebar.html' %}
+
+	<main class="main">
+		<div class="site-content single-incident">
+			<h1><span class="far fa-exclamation-circle"></span> Alert at {{ alert.title }}</h1>
+
+			<table class="icon-table">
+				<tr>
+					<td><span class="far fa-exclamation-triangle"></span></td>
+					<th>Alert severity</th>
+					<td>{{ alert.level }}</td>
+				</tr>
+				<tr>
+					<td><span class="far fa-clock"></span></td>
+					<th>First reported</th>
+					<td><time title="{{ alert.date }}">
+							{{ alert.date | human_time_diff }}
+						</time></td>
+				</tr>
+				<tr>
+					<td><span class="far fa-link"></span></td>
+					<th>More information</th>
+					<td><a href="{{ alert.link }}" target="_blank">{{ alert.link }}</a></td>
+				</tr>
+			</table>
+
+			<div id="map"></div>
+		</div>
+		{% include 'partials/footer.html' %}
+	</main>
+</div>
+
+<script>
+	window.incident_info = {
+		lat: {{ alert.lat }},
+		long: {{ alert.long }}
+	}
+</script>
+
+{% include 'partials/footer_meta.html' %}
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHcTEGDOEvnSfv7oQbEcGxzIWFxPVDeM4&callback=load_incident_map"></script>
+
+</body>
+</html>

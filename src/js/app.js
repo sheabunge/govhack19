@@ -1,72 +1,33 @@
 (function () {
 	'use strict';
 
-	let artwork_filters = document.querySelectorAll('.filter-artwork select');
+	window.load_incident_map = () => {
+		const item = window.incident_info;
+		const position = new google.maps.LatLng(item.lat, item.long);
 
-	for (let filter of artwork_filters) {
-		filter.addEventListener('change', () => {
-			const selected = filter.options[filter.selectedIndex];
-			const name = filter.name;
-
-			if (filter.selectedIndex === 0) {
-				window.location.pathname = '/';
-			} else if (selected) {
-				window.location.pathname = '/' + name + '/' + selected.value;
-			}
-		});
-	}
-
-	let render_large_map = (start_lat, start_long) => {
-		const default_lat = -42.8838359, default_long = 147.3311996;
-
-		let center = (start_lat === undefined || start_long === undefined) ?
-			{lat: default_lat, lng: default_long} :
-			{lat: start_lat, lng: start_long};
-
-		let map = new google.maps.Map(document.getElementById('large-map'), {
-			zoom: 17,
-			center: center
+		const map = new google.maps.Map(document.getElementById('map'), {
+			zoom: 12,
+			center: position,
+			scaleControl: true,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
 		});
 
-		for (let artwork of window.artwork_locations) {
-			let marker = new google.maps.Marker({
-				position: {lat: artwork.lat, lng: artwork.long},
-				map: map,
-				icon: '/static/images/thumb/' + artwork.image
-			});
+		const alert_icon = {
+			path: 'M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z',
+			// scale: 0.65
+			scale: 0.05,
+			strokeWeight: 0.2,
+			strokeColor: 'black',
+			strokeOpacity: 1,
+			fillColor: '#E32831',
+			fillOpacity: 1,
+		};
 
-		    let infowindow = new google.maps.InfoWindow({
-			    content: artwork.title + '<br><img src="/static/images/full/' + artwork.image + '" width="200px" style="display: block; margin: 5px auto 0">'
-		    });
-
-			marker.addListener('click', () => {
-				window.location.pathname = '/artwork/' + artwork.uid
-			});
-
-			marker.addListener('mouseover', () => infowindow.open(map, marker));
-			marker.addListener('mouseout', () => infowindow.close(map, marker));
-		}
-
-		if (start_lat !== undefined && start_long !== undefined) {
-			let marker = new google.maps.Marker({
-				position: center,
-				map: map,
-				animation: google.maps.Animation.DROP,
-				label: 'You are here'
-			});
-		}
+		new google.maps.Marker({
+			position: position,
+			map: map,
+			clickable: false,
+			icon: alert_icon
+		});
 	};
-
-	window.load_large_map = () => {
-
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(
-				(position) => render_large_map(position.coords.latitude, position.coords.longitude),
-				() => render_large_map()
-			);
-		} else {
-			render_large_map()
-		}
-	};
-
 })();

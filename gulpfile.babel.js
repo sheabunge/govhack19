@@ -89,7 +89,7 @@ task('clean', () =>
 task('default', series('clean', parallel('vendor', 'fonts', 'css', 'js')));
 
 task('watch', series('default', (done) => {
-	watch('src/css/**/*.scss', series('css'));
+	watch('src/scss/**/*.scss', series('css'));
 	watch('src/js/*.js', series('js'));
 	done();
 }));

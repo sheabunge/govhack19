@@ -1,19 +1,19 @@
 
 .site {
 	background-color: whitesmoke;
-	max-width: 1260px;
+	display: flex;
+	flex-flow: row;
+}
+
+.main {
+	flex: 1;
 }
 
 .secondary {
 	padding: 0 10px;
-	min-height: 100vh;
-	position: fixed;
-    width: 215px;
+	height: 100vh;
+	position: sticky;
 	top: 0;
-}
-
-.main, .site-footer {
-	margin-left: 215px;
 }
 
 .site-footer {
@@ -26,7 +26,16 @@
 		margin-bottom: 10px;
 	}
 
-	.logo {
+	a {
+		color: currentColor;
+		font-weight: 600;
+	}
+
+	a + span, span + a  {
+		padding-left: 3px;
+	}
+
+	span.far, span.fas {
 		font-weight: 600;
 	}
 }
@@ -40,5 +49,3 @@
 .filter-title {
 	margin-left: 1.5em;
 }
-
-

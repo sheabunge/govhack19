@@ -1,0 +1,65 @@
+
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
+.main {
+	flex-flow: column;
+	display: flex;
+	justify-content: space-between;
+}
+
+.site-content {
+	padding: 2em 3em;
+	max-width: 960px;
+}
+
+.alerts {
+
+	article {
+		padding: 1em 0;
+	}
+
+	article > a {
+		display: block;
+		color: inherit;
+		text-decoration: none;
+		border: 1px solid transparent;
+		padding: 1em;
+		transition: 700ms all;
+
+		p:last-of-type {
+			margin-bottom: 0;
+		}
+
+		h2:first-of-type {
+			margin-top: 0;
+		}
+
+		&:hover {
+			border-color: #bbb;
+			background: rgba(0, 0, 0, 0.05);
+		}
+	}
+}
+
+
+.site-content table {
+	&, th, td {
+		border: none;
+		width: auto;
+	}
+
+	td:first-child {
+		text-align: center;
+		font-size: 115%;
+	}
+
+	th, td {
+		padding: 10px;
+	}
+}
+
+#map {
+	height: 300px;
+}

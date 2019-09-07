@@ -10,7 +10,8 @@
         }
     ],
     "require": {
-        "twig/twig": "^2.0"
+        "twig/twig": "^2.0",
+        "simplepie/simplepie": "^1.5"
     },
     "autoload": {
         "psr-4": {
