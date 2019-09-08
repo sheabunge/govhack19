@@ -27,14 +27,22 @@ class App {
 	protected $base_dir;
 
 	/**
+	 * Base source files directory
+	 * @var string
+	 */
+	protected $source_dir;
+
+	/**
 	 * Class constructor.
 	 *
 	 * @param string $app_path Full absolute path to base application directory.
 	 */
 	public function __construct( $app_path ) {
-		$this->base_dir = $app_path;
-		$this->views = new Views( $this->base_dir );
-		$this->data = new Data();
+		$this->base_dir = rtrim( $app_path, '/' );
+		$this->source_dir = $this->base_dir . '/src';
+
+		$this->views = new Views( $this->source_dir );
+		$this->data = new Data( $this->base_dir . '/data', $this->views->get_base_path() . '/data' );
 	}
 
 	protected function load_index( $alert_data ) {
