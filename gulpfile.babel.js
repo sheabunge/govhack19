@@ -15,6 +15,7 @@ import source from 'vinyl-source-stream';
 import buffer from 'vinyl-buffer';
 import uglify from 'gulp-uglify';
 import eslint from 'gulp-eslint';
+import imagemin from 'gulp-imagemin';
 
 const browsersync = require('browser-sync').create();
 
@@ -79,6 +80,12 @@ task('fonts', () =>
 	src(['solid', 'regular'].map((style) => `node_modules/@fortawesome/fontawesome-pro/webfonts/fa-${style}-*`))
 		.pipe(rename({dirname: ''}))
 		.pipe(dest('dist/fonts'))
+);
+
+task('imagemin', () =>
+	src('data/trees/images')
+		.pipe(imagemin())
+		.pipe(dest('data/trees/images'))
 );
 
 task('clean', () =>

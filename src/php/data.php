@@ -132,4 +132,24 @@ class Data {
 		fclose( $handle );
 		return $data;
 	}
+
+	public function load_building_data() {
+		$data = [];
+
+		$contents = file_get_contents( $this->data_dir . 'buildings/libraries.json' );
+		$contents = json_decode( utf8_encode( $contents ) );
+
+		foreach ( $contents->features as $feature ) {
+			$data[] = [
+				'type'    => 'library',
+				'address' => $feature->properties->address,
+				'long'     => $feature->geometry->coordinates[0],
+				'lat'    => $feature->geometry->coordinates[1],
+				'title'   => $feature->properties->title . ' Public Library',
+				'url'     => 'https://libraries.tas.gov.au' . $feature->properties->url,
+			];
+		}
+
+		return $data;
+	}
 }

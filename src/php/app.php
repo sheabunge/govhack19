@@ -53,10 +53,12 @@ class App {
 
 	protected function load_alert( $alert_data ) {
 		$tree_data = $this->data->load_tree_data();
+		$building_data = $this->data->load_building_data();
 
 		$this->views->load_template( 'alert', [
-			'alert' => $alert_data,
-			'trees' => $tree_data,
+			'alert'      => $alert_data,
+			'trees'      => $tree_data,
+			'buildings'  => $building_data,
 			'trees_json' => json_encode( $tree_data ),
 		] );
 	}

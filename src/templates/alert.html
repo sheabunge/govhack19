@@ -47,6 +47,8 @@
 	};
 
 	window.trees_data = {{ trees_json | raw }};
+
+	window.buildings_data = {{ buildings | json_encode() | raw }};
 </script>
 
 {% include 'partials/footer_meta.html' %}
