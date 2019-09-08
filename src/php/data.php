@@ -90,4 +90,44 @@ class Data {
 
 		return $data;
 	}
+
+	public function load_tree_data() {
+		$filepath = $this->data_dir . 'trees/trees.csv';
+		$data = [];
+
+		if ( false === ( $handle = fopen( $filepath, 'r' ) ) ) {
+			return $data;
+		}
+
+		$column_indices = array_flip( array_map( 'strtolower', fgetcsv( $handle, 1000, ',' ) ) );
+
+		$column_map = [
+			'name'     => 'botanical_id',
+			'url'      => 'data_sheet_url',
+			'adr'      => 'address',
+			'address'  => 'full_address',
+			'lat'      => 'lat',
+			'long'     => 'long',
+			'place_id' => 'place_id',
+		];
+
+		while ( false !== ( $row = fgetcsv( $handle, 1000, ',' ) ) ) {
+			$row_data = [];
+
+			foreach ( $column_map as $field => $column ) {
+				$row_data[ $field ] = isset( $row[ $column_indices[ $column ] ] ) ? $row[ $column_indices[ $column ] ] : '';
+			}
+
+			$row_data['lat'] = (float) $row_data['lat'];
+			$row_data['long'] = (float) $row_data['long'];
+
+			$filename = pathinfo( parse_url( $row_data['url'], PHP_URL_PATH ), PATHINFO_FILENAME );
+			$row_data['image'] = $this->data_url . 'trees/images/' . $filename . '-000.png';
+
+			$data[] = $row_data;
+		}
+
+		fclose( $handle );
+		return $data;
+	}
 }
