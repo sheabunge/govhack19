@@ -17,9 +17,9 @@
 			// scale: 0.65
 			scale: 0.07,
 			strokeWeight: 0.2,
-			strokeColor: 'black',
+			strokeColor: '#ff7f00',
 			strokeOpacity: 1,
-			fillColor: '#fd7e14',
+			fillColor: '#ff7f00',
 			fillOpacity: 1,
 		};
 
@@ -29,7 +29,7 @@
 			strokeWeight: 0.2,
 			strokeColor: 'black',
 			strokeOpacity: 1,
-			fillColor: '#2ECC40',
+			fillColor: '#2ecc40',
 			fillOpacity: 1,
 		};
 
@@ -37,17 +37,31 @@
 			position: position,
 			map: map,
 			clickable: false,
-			icon: alert_icon
+			icon: alert_icon,
+			label: item.name
 		});
 
 		const trees = window.trees_data;
+		let tree;
 
 		for (let i = 0; i < trees.length; i++) {
-			new google.maps.Marker({
-				position: {lat: trees[i].lat, lng: trees[i].long},
+			tree = trees[i];
+			const marker = new google.maps.Marker({
+				position: {lat: tree.lat, lng: tree.long},
 				map: map,
 				icon: tree_icon
 			});
+
+			let content = '<strong>' + tree.name + '</strong>';
+			if (tree.image) {
+				content += `<br><img src="${tree.image}" width="200px" style="display: block; margin: 5px auto 0" alt="picture of tree">`;
+			}
+
+			content += `<br><a href="${tree.url}" target="_blank">Read more about this tree</a>`;
+
+			let infowindow = new google.maps.InfoWindow({content: content});
+
+			marker.addListener('click', () => infowindow.open(map, marker));
 		}
 	};
 })();

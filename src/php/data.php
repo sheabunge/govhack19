@@ -122,7 +122,9 @@ class Data {
 			$row_data['long'] = (float) $row_data['long'];
 
 			$filename = pathinfo( parse_url( $row_data['url'], PHP_URL_PATH ), PATHINFO_FILENAME );
-			$row_data['image'] = $this->data_url . 'trees/images/' . $filename . '-000.png';
+			$image_url = 'trees/images/' . $filename . '-000.png';
+
+			$row_data['image'] = file_exists( $this->data_dir . $image_url ) ? ( $this->data_url . $image_url ) : '';
 
 			$data[] = $row_data;
 		}

@@ -1,7 +1,6 @@
 
 .secondary {
-	background-color: #000;
-	border-top: 1px solid #000;
+	background-color: $secondary-color;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 	color: rgba(255, 255, 255, 0.7);
 
@@ -35,12 +34,12 @@
 		}
 
 		&:hover {
-			color: #FF4136;
+			color: $main-color;
 			text-decoration: none;
 		}
 
 		&.current {
-			color: red;
+			color: $main-color;
 			font-weight: 900;
 		}
 	}

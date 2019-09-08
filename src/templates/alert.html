@@ -42,7 +42,8 @@
 <script>
 	window.incident_info = {
 		lat: {{ alert.lat }},
-		long: {{ alert.long }}
+		long: {{ alert.long }},
+		name: '{{ alert.name }}'
 	};
 
 	window.trees_data = {{ trees_json | raw }};
